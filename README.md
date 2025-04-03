@@ -1,4 +1,4 @@
-# 🥇 NTIRE 2025 CD-FSOD Challenge @ CVPR Workshop
+# 🥈 NTIRE 2025 CD-FSOD Challenge @ CVPR Workshop
 
 We are the **award-winning team** of the **NTIRE 2025 Cross-Domain Few-Shot Object Detection (CD-FSOD) Challenge** at the **CVPR Workshop**.
 
@@ -66,6 +66,7 @@ Please follow the instructions in the [official CD-FSOD repo](https://github.com
 
 ## 🏋️ Training
 To train the model: 
+50 groups of experiments were carried out on the 8 x A100, a total of 50*8 groups of experiments.
 ```
 cd ./mmdetection
 
@@ -85,9 +86,12 @@ Run evaluation:
 ```
 cd ./mmdetection
 
-bash tools/dist_test.sh configs/lae_dino/lae_dino_swin-t_pretrain_LAE-1M.py /path/to/model/ 4
+bash tools/dist_test.sh configs/lae_dino/lae_dino_swin-t_pretrain_LAE-1M.py /path/to/model/ 
+4
 ```
 Run inference:
+
+Save to `*.pkl` file and convert to submit `.json` format.
 ```
 cd ./mmdetection
 
