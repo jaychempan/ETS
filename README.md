@@ -10,6 +10,8 @@ We are the **AI4EarthLab team** of the **NTIRE 2025 Cross-Domain Few-Shot Object
 🔗 [NTIRE 2025 Challenge Website](https://codalab.lisn.upsaclay.fr/competitions/21851)  
 🔗 [CD-FSOD Challenge Repository](https://github.com/lovelyqian/NTIRE2025_CDFSOD)
 
+![CD-FSOD Task](./assets/ets.png)
+
 ![CD-FSOD Task](./assets/ets-pipeline.png)
 
 ---
@@ -25,7 +27,8 @@ We propose a method that integrates **dynamic mixed image augmentation with effi
 ## 🛠️ Environment Setup
 
 The experimental environment is based on [mmdetection](https://github.com/open-mmlab/mmdetection/blob/main/docs/zh_cn/get_started.md), the installation environment reference mmdetection's [installation guide](https://github.com/open-mmlab/mmdetection/blob/main/docs/zh_cn/get_started.md).
-```
+
+```bash
 conda create --name lae python=3.8 -y
 conda activate lae
 cd ./mmdetection_lae
@@ -41,7 +44,7 @@ pip install emoji ddd-dataset
 pip install git+https://github.com/lvis-dataset/lvis-api.git
 ```
 Then download the BERT weights `bert-base-uncased` into the weights directory,
-```
+```bash
 cd ETS/
 huggingface-cli download --resume-download google-bert/bert-base-uncased --local-dir weights/bert-base-uncased
 ```
@@ -50,7 +53,7 @@ huggingface-cli download --resume-download google-bert/bert-base-uncased --local
 ## 📂 Dataset Preparation
 Please follow the instructions in the [official CD-FSOD repo](https://github.com/lovelyqian/NTIRE2025_CDFSOD) to download and prepare the dataset.
 
-```
+```bash
 .
 ├── configs
 ├── data
@@ -65,11 +68,71 @@ Please follow the instructions in the [official CD-FSOD repo](https://github.com
 ```
 
 ## 🏋️ Training
+
+Mix Image Augmentation Config
+
+```python
+train_pipeline = [
+    dict(type='LoadImageFromFile', backend_args=backend_args),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(type='CachedMosaic', img_scale=(640, 640), pad_val=114.0, prob=0.6),
+    # dict(type='CopyPaste', max_num_pasted=5, paste_by_box=True),  # 添加 CopyPaste 数据增强
+    dict(type='YOLOXHSVRandomAug'),
+    dict(type='RandomFlip', prob=0.5),
+    dict(
+        type='CachedMixUp',
+        img_scale=(640, 640),
+        ratio_range=(1.0, 1.0),
+        max_cached_images=10,
+        pad_val=(114, 114, 114),
+        prob = 0.3),
+    dict(
+        type='RandomChoice',
+        transforms=[
+            [
+                dict(
+                    type='RandomChoiceResize',
+                    scales=[(480, 1333), (512, 1333), (544, 1333), (576, 1333),
+                            (608, 1333), (640, 1333), (672, 1333), (704, 1333),
+                            (736, 1333), (768, 1333), (800, 1333)],
+                    keep_ratio=True)
+            ],
+            [
+                dict(
+                    type='RandomChoiceResize',
+                    # The radio of all image in train dataset < 7
+                    # follow the original implement
+                    scales=[(400, 4200), (500, 4200), (600, 4200)],
+                    keep_ratio=True),
+                dict(
+                    type='RandomCrop',
+                    crop_type='absolute_range',
+                    crop_size=(384, 600),
+                    allow_negative_crop=True),
+                dict(
+                    type='RandomChoiceResize',
+                    scales=[(480, 1333), (512, 1333), (544, 1333), (576, 1333),
+                            (608, 1333), (640, 1333), (672, 1333), (704, 1333),
+                            (736, 1333), (768, 1333), (800, 1333)],
+                    keep_ratio=True)
+            ]
+        ]),
+    # dict(type='RandomErasing', n_patches=(0,2), ratio=0.3, img_border_value=128, bbox_erased_thr=0.9),
+    dict(
+        type='PackDetInputs',
+        meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
+                   'scale_factor', 'flip', 'flip_direction', 'text',
+                   'custom_entities'))
+]
+
+```
+
+
 To train the model: 
 
 50 groups of experiments were carried out on the 8 x A100, a total of 50 x 8 groups of experiments.
 
-```
+```bash
 cd ./mmdetection
 
 ./tools/dist_train_muti.sh configs/grounding_dino/CDFSOD/GroudingDINO-few-shot-SwinB.py "0,1,2,3,4,5,6,7" 50
@@ -87,7 +150,7 @@ Download the checkpoint files to dir `./weights`.
 
 Run evaluation:
 
-```
+```bash
 cd ./mmdetection
 
 bash tools/dist_test.sh configs/grounding_dino/CDFSOD/GroudingDINO-few-shot-SwinB.py /path/to/model/ 4
@@ -96,7 +159,7 @@ bash tools/dist_test.sh configs/grounding_dino/CDFSOD/GroudingDINO-few-shot-Swin
 Run inference:
 
 Save to `*.pkl` file and convert to submit `.json` format.
-```
+```bash
 cd ./mmdetection
 
 ## 1-shot-dataset1
@@ -147,7 +210,7 @@ python ../pkl2coco.py --coco_file ../data/dataset3/annotations/test.json --pkl_f
 
 ## 📄 Citation
 If you use our method or codes in your research, please cite:
-```
+```bash
 @inproceedings{fu2025ntire, 
   title={NTIRE 2025 challenge on cross-domain few-shot object detection: methods and results},
   author={Fu, Yuqian and Qiu, Xingyu and Ren, Bin and Fu, Yanwei and Timofte, Radu and Sebe, Nicu and Yang, Ming-Hsuan and Van Gool, Luc and others},
@@ -156,7 +219,7 @@ If you use our method or codes in your research, please cite:
 }
 ```
 
-```
+```bash
 @inproceedings{pan2025enhance, 
   title={Enhance Then Search: An Augmentation-Search Strategy with Foundation Models for Cross-Domain Few-Shot Object Detection},
   author={Pan, Jiancheng and Liu, Yanxing and He, Xiao and Peng, Long and Li, Jiahao and Sun, Yuze and Huang, Xiaomeng},
