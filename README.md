@@ -16,6 +16,9 @@ We are the **AI4EarthLab team** of the **NTIRE 2025 Cross-Domain Few-Shot Object
 
 ---
 
+## 📰 News
+- [2025.4] 🎉 Release the **ETS** code based on GroundingDINO Swin-B.
+- [2025.3] 🎉 Win the **2nd Place** in the NTIRE 2025 CD-FSOD Challenge, CVPR2025.
 
 ## 🧠 Overview
 
