@@ -50,10 +50,7 @@ dataset_type = 'CocoDataset'
 # )
 # )
 
-data_root = '../data/DIOR/'
-metainfo = dict(
-    classes = ("airplane", "airport", "groundtrackfield", "harbor", "baseballfield", "overpass", "basketballcourt", "ship", "bridge", "stadium", "storagetank", "tenniscourt", "expressway service area", "trainstation", "expressway toll station", "vehicle", "golffield", "windmill", "chimney", "dam")
-)
+
 ############ on pub dataset ##############
 
 ########### on unsee dataset ##############
