@@ -92,5 +92,5 @@ def find_best_map_in_logs_multithread(root_dir, output_csv="best_map_summary.csv
     print(f"\n✅ 多线程统计完成，已排序保存至：{csv_path}")
 
 # 用法
-root_directory = "/home/panjiancheng/projects/NTIRE2025-CDFSOD-AI4EarthLab/mmdetection/work_dirs"  # ← 替换为你的路径
+root_directory = "./mmdetection/work_dirs"  # ← 替换为你的路径
 find_best_map_in_logs_multithread(root_directory)

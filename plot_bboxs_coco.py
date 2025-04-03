@@ -120,8 +120,8 @@ def convert_and_annotate(coco_file_path, image_directory, score_threshold=0.0):
     print(f"JSONL format data has been saved to {jsonl_file_path}")
 
 # 使用示例
-coco_file_path = '/home/panjiancheng/projects/NTIRE2025-CDFSOD-AI4EarthLab/data/ArTaxOr/annotations/test_val_0.3.json'
-image_directory = '/home/panjiancheng/projects/NTIRE2025-CDFSOD-AI4EarthLab/data/ArTaxOr/test/'
+coco_file_path = './data/ArTaxOr/annotations/test_val_0.3.json'
+image_directory = './data/ArTaxOr/test/'
 score_threshold = 0.0  # 只显示置信度大于等于0.3的框
 
 convert_and_annotate(coco_file_path, image_directory, score_threshold=score_threshold)
