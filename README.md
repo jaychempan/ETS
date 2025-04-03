@@ -10,7 +10,9 @@ We are the **AI4EarthLab team** of the **NTIRE 2025 Cross-Domain Few-Shot Object
 🔗 [NTIRE 2025 Challenge Website](https://codalab.lisn.upsaclay.fr/competitions/21851)  
 🔗 [CD-FSOD Challenge Repository](https://github.com/lovelyqian/NTIRE2025_CDFSOD)
 
-![CD-FSOD Task](https://upload-images.jianshu.io/upload_images/9933353-3d7be0d924bd4270.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<p align="center">
+    <img src="https://upload-images.jianshu.io/upload_images/9933353-3d7be0d924bd4270.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Image" width="500">
+</p>
 
 ---
 
