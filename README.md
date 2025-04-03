@@ -222,7 +222,7 @@ python ../pkl2coco.py --coco_file ../data/dataset3/annotations/test.json --pkl_f
 
 ## 📄 Citation
 If you use our method or codes in your research, please cite:
-```bash
+```
 @inproceedings{fu2025ntire, 
   title={NTIRE 2025 challenge on cross-domain few-shot object detection: methods and results},
   author={Fu, Yuqian and Qiu, Xingyu and Ren, Bin and Fu, Yanwei and Timofte, Radu and Sebe, Nicu and Yang, Ming-Hsuan and Van Gool, Luc and others},
@@ -231,10 +231,11 @@ If you use our method or codes in your research, please cite:
 }
 ```
 
-```bash
+```
 @inproceedings{pan2025enhance, 
   title={Enhance Then Search: An Augmentation-Search Strategy with Foundation Models for Cross-Domain Few-Shot Object Detection},
   author={Pan, Jiancheng and Liu, Yanxing and He, Xiao and Peng, Long and Li, Jiahao and Sun, Yuze and Huang, Xiaomeng},
+  booktitle={CVPRW},
   year={2025}
 }
 ```
