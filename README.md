@@ -1,6 +1,6 @@
 # 🥈 NTIRE 2025 CD-FSOD Challenge @ CVPR Workshop
 
-We are the **award-winning team** of the **NTIRE 2025 Cross-Domain Few-Shot Object Detection (CD-FSOD) Challenge** at the **CVPR Workshop**.
+We are the **AI4EarthLab team** of the **NTIRE 2025 Cross-Domain Few-Shot Object Detection (CD-FSOD) Challenge** at the **CVPR Workshop**.
 
 - 🏆 **Track**: `open-source track`
 - 🎖️ **Award**: **2nd Place**
@@ -66,13 +66,15 @@ Please follow the instructions in the [official CD-FSOD repo](https://github.com
 
 ## 🏋️ Training
 To train the model: 
-50 groups of experiments were carried out on the 8 x A100, a total of 50*8 groups of experiments.
+
+50 groups of experiments were carried out on the 8 x A100, a total of 50 x 8 groups of experiments.
+
 ```
 cd ./mmdetection
 
 ./tools/dist_train_muti.sh configs/grounding_dino/CDFSOD/GroudingDINO-few-shot-SwinB.py "0,1,2,3,4,5,6,7" 50
 ```
-use `sampling4val.py` for sampling validation set.
+use `sampling4val.py` for sampling test set for validation set.
 
 use `sata_logs` for search to get best model parameter from train logs.
 
@@ -82,12 +84,15 @@ Download the checkpoint files to dir `./weights`.
 > Baidu Disk: [[link]](https://pan.baidu.com/s/1r_xR4F6eLq5pXocgZc8-Ww?pwd=mpnc)
 
 ## 🔍 Inference & Evaluation
+
 Run evaluation:
+
 ```
 cd ./mmdetection
 
 bash tools/dist_test.sh configs/grounding_dino/CDFSOD/GroudingDINO-few-shot-SwinB.py /path/to/model/ 4
 ```
+
 Run inference:
 
 Save to `*.pkl` file and convert to submit `.json` format.
