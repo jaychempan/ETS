@@ -10,9 +10,7 @@ We are the **AI4EarthLab team** of the **NTIRE 2025 Cross-Domain Few-Shot Object
 🔗 [NTIRE 2025 Challenge Website](https://codalab.lisn.upsaclay.fr/competitions/21851)  
 🔗 [CD-FSOD Challenge Repository](https://github.com/lovelyqian/NTIRE2025_CDFSOD)
 
-![CD-FSOD Task](./assets/ets.png)
-
-![CD-FSOD Task](./assets/ets-pipeline.png)
+![CD-FSOD Task](https://upload-images.jianshu.io/upload_images/9933353-3d7be0d924bd4270.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ---
 
@@ -21,6 +19,15 @@ We are the **AI4EarthLab team** of the **NTIRE 2025 Cross-Domain Few-Shot Object
 
 This repository contains our solution for the `open-source track` of the NTIRE 2025 CD-FSOD Challenge.  
 We propose a method that integrates **dynamic mixed image augmentation with efficient grid-based sub-domain search strategy**, which achieves strong performance on the challenge. 
+
+<p align="center">
+    <img src="assets/ets.png" alt="Image" width="300">
+</p>
+
+
+<p align="center">
+    <img src="assets/ets-pipeline.png" alt="Image" width="500">
+</p>
 
 ---
 
