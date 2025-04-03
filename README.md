@@ -86,8 +86,7 @@ Run evaluation:
 ```
 cd ./mmdetection
 
-bash tools/dist_test.sh configs/lae_dino/lae_dino_swin-t_pretrain_LAE-1M.py /path/to/model/ 
-4
+bash tools/dist_test.sh configs/grounding_dino/CDFSOD/GroudingDINO-few-shot-SwinB.py /path/to/model/ 4
 ```
 Run inference:
 
