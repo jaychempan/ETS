@@ -41,9 +41,9 @@ We propose a method that integrates **dynamic mixed image augmentation with effi
 The experimental environment is based on [mmdetection](https://github.com/open-mmlab/mmdetection/blob/main/docs/zh_cn/get_started.md), the installation environment reference mmdetection's [installation guide](https://github.com/open-mmlab/mmdetection/blob/main/docs/zh_cn/get_started.md).
 
 ```bash
-conda create --name lae python=3.8 -y
-conda activate lae
-cd ./mmdetection_lae
+conda create --name ets python=3.8 -y
+conda activate ets
+cd ./mmdetection
 pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 pip install -U openmim
 mim install mmengine
